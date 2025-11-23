@@ -1,0 +1,6 @@
+(executable
+  (package rh-backlight)
+ (public_name backlight)
+ (name main)
+ (libraries backlight)
+ )
