@@ -1,2 +1,7 @@
 (library
- (name backlight))
+ (name backlight)
+ (preprocess (pps ppx_let))
+ (libraries core
+            core_unix
+            core_unix.sys_unix
+            core_unix.filename_unix))

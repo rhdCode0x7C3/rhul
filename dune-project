@@ -17,29 +17,35 @@
 
 (package
  (name rhul)
- (synopsis "rh-UserLand")
+ (synopsis "Rh-UserLand")
  (description "Shared library code for rhUL utilities.")
- (depends ocaml)
- )
+ (depends (ocaml (>= 5.4.0))
+  ;; Dev setup
+           (utop :with-dev-setup)
+           (ocamlformat :with-dev-setup)
+           (ocp-indent :with-dev-setup)
+           (merlin :with-dev-setup)
+           (ocaml-lsp-server :with-dev-setup)))
 
 (package
  (name rh-audio)
- (synopsis "rh-audio")
+ (synopsis "Rh-audio")
  (description "Linux audio control utility written in OCaml.")
- (depends ocaml)
+ (depends (ocaml (>= 5.4.0))
+          (obus (>= 1.2.5)))
  )
 
 (package
  (name rh-backlight)
- (synopsis "rh-backlight")
+ (synopsis "Rh-backlight")
  (description "Linux backlight control utility written in OCaml.")
- (depends ocaml)
+ (depends (ocaml (>= 5.4.0)))
  )
 
 (package
  (name rh-network)
- (synopsis "rh-network")
+ (synopsis "Rh-network")
  (description "Linux network control utility written in OCaml.")
- (depends ocaml)
+ (depends (ocaml (>= 5.4.0)))
  )
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html
