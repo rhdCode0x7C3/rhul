@@ -1,3 +1,7 @@
 (library
   (package rhul)
- (name rhul))
+ (name rhul)
+ (libraries core
+              core_unix
+              core_unix.sys_unix
+              ))
