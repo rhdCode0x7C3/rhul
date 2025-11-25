@@ -1,5 +1,10 @@
-type value = Val of string | Vals of string list
-type t = { key : string; value : value option }
+open Core
 
-val get : string -> t
-val is_dev : unit -> bool
+type t = Val of string | Vals of string list
+
+type error = Bad_type
+
+val get : string -> t option
+
+val value : t -> (string, error) Result.t
+val values : t -> (string list, error) Result.t

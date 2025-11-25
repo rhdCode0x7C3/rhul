@@ -4,17 +4,6 @@ open Core
 
 type fragment = string
 type t = Relative of fragment list | Absolute of fragment list
-type error = Validation of string
-
-let is_valid t =
-  let all_true l = List.fold l ~init:true ~f:(fun acc el -> acc && el) in
-  let is_alphanumeric s = String.for_all s ~f:(fun c -> Char.is_alphanum c) in
-  let check s =
-    (not (String.is_substring s ~substring:"..")) && is_alphanumeric s
-  in
-  let l = String.split t ~on:'/' in
-  if List.is_empty l then false
-  else List.map l ~f:(fun s -> check s) |> all_true
 
 let equal a b =
   let equal_fragment = String.equal in
@@ -23,21 +12,25 @@ let equal a b =
       List.equal equal_fragment a b
   | _ -> false
 
-let get_fragments = function Absolute l -> l | Relative l -> l
+let to_fragments = function Absolute l -> l | Relative l -> l
 let is_absolute = function Absolute _ -> true | _ -> false
 let is_relative = function Relative _ -> true | _ -> false
 
-let append (path : t) fragment =
-  match path with
-  | Absolute l -> Absolute (l @ [ fragment ])
-  | Relative l -> Relative (l @ [ fragment ])
+let append suffix ~to_path =
+  let suffix = to_fragments suffix in
+  match to_path with
+  | Absolute l -> Absolute (l @ suffix)
+  | Relative l -> Relative (l @ suffix)
+
+let prepend prefix ~to_path =
+  let px = to_fragments prefix in
+  let sx = to_fragments to_path in
+  if is_absolute prefix then Absolute (px @ sx) else Relative (px @ sx)
 
 let of_string (s : string) =
   let is_abs s = match String.index s '/' with Some 0 -> true | _ -> false in
   let to_list s = String.split s ~on:'/' in
-  if is_valid s then
-    if is_abs s then Ok (Absolute (to_list s)) else Ok (Relative (to_list s))
-  else Error (Validation s)
+  if is_abs s then Absolute (to_list s) else Relative (to_list s)
 
 let pp ppf t =
   let sep = Filename.dir_sep in
@@ -47,3 +40,18 @@ let pp ppf t =
   | Relative l -> Format.fprintf ppf "%s" (concat l)
 
 let to_string = Format.asprintf "%a" pp
+
+let exists t =
+  match Core_unix.access (to_string t) [ `Exists ] with
+  | Ok () -> true
+  | _ -> false
+
+let is_readable t =
+  match Core_unix.access (to_string t) [ `Read ] with
+  | Ok () -> true
+  | _ -> false
+
+let is_writeable t =
+  match Core_unix.access (to_string t) [ `Write ] with
+  | Ok () -> true
+  | _ -> false

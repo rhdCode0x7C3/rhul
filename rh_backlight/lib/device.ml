@@ -1,6 +1,6 @@
 open Core
 
-type dev_class = Backlight | Leds
+type dev_class = Backlight | Leds [@@deriving sexp, show]
 
 type t = {
   name : string;
@@ -8,6 +8,7 @@ type t = {
   brightness : int;
   max_brightness : int;
 }
+[@@deriving sexp, show]
 
 type field = Name | Brightness | Max_brightness
 type error = Device of t | Path of string

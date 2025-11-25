@@ -1,5 +1,7 @@
 open Core
 
+type t = Device.t list [@@deriving sexp, show]
+
 let scan () =
   let ls basedir =
     let full_path basedir fn = basedir ^ fn in
@@ -20,3 +22,5 @@ let scan () =
        (ls Globals.leds_path) ~compare:String.compare)
     ~f:(fun path -> Device.read_path path)
   |> filter_errors
+
+let save l = l |> sexp_of_t |> Cache.write

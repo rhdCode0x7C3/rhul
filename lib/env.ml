@@ -1,19 +1,14 @@
 open Core
 
-type value = Val of string | Vals of string list
-type t = { key : string; value : value option }
+type t = Val of string | Vals of string list
+type error = Bad_type
 
-let make_value s =
+let make s =
   let l = String.split s ~on:':' in
   if List.length l = 1 then Val s else Vals l
 
 let get key =
-  match Sys_unix.unsafe_getenv key with
-  | Some v ->
-      let v = make_value v in
-      { key; value = Some v }
-  | None -> { key; value = None }
+  match Sys_unix.unsafe_getenv key with Some v -> Some (make v) | None -> None
 
-let is_dev () =
-  let kv = get "RHUL_DEV" in
-  match kv.value with Some (Val "true") -> true | _ -> false
+let value = function Val s -> Ok s | _ -> Error Bad_type
+let values = function Vals l -> Ok l | _ -> Error Bad_type
