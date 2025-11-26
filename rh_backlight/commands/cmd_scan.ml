@@ -12,7 +12,7 @@ let handler = function
       print_endline (Cache.error_to_string e);
       Globals.exit_err
 
-let run () = Discover.scan () |> Discover.sexp_of_t |> Cache.write
+let run () = Discover.scan () |> Discover.sexp_of_t |> Cache.write ~fn:"scan"
 
 let cmd =
   let doc = "Scan for devices with brightness control" in

@@ -12,4 +12,4 @@ type error =
 
 val cache : unit -> (Path.t, error) Result.t
 val read : unit -> (Sexp.t, error) Result.t
-val write : Sexp.t -> (unit, error) Result.t
+val write : fn:string -> Sexp.t -> (unit, error) Result.t

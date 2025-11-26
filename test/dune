@@ -1,2 +1,5 @@
 (test
- (name test_rhul))
+ (name test_path)
+ (libraries alcotest
+            core
+            rhul))

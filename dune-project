@@ -25,7 +25,8 @@
            (ocamlformat :with-dev-setup)
            (ocp-indent :with-dev-setup)
            (merlin :with-dev-setup)
-           (ocaml-lsp-server :with-dev-setup)))
+           (ocaml-lsp-server :with-dev-setup)
+           (alcotest (>= 1.9.1 :with-test))))
 
 (package
  (name rh-audio)

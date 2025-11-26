@@ -22,5 +22,3 @@ let scan () =
        (ls Globals.leds_path) ~compare:String.compare)
     ~f:(fun path -> Device.read_path path)
   |> filter_errors
-
-let save l = l |> sexp_of_t |> Cache.write
