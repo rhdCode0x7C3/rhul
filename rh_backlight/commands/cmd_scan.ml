@@ -7,10 +7,10 @@ let exits = Cmd.Exit.defaults
 let handler = function
   | Ok _ ->
       print_endline "exit ok";
-      Rhul.Globals.exit_ok
+      Globals.exit_ok
   | Error e ->
       print_endline (Cache.error_to_string e);
-      Rhul.Globals.exit_err
+      Globals.exit_err
 
 let run () = Discover.scan () |> Discover.sexp_of_t |> Cache.write
 
