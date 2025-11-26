@@ -4,3 +4,10 @@
  (name main)
  (libraries backlight)
  )
+
+(executable
+  (package rh-backlight)
+ (public_name backlight_cli)
+ (name main_cli)
+ (libraries backlight commands cmdliner)
+ )

@@ -1,0 +1,6 @@
+(library
+ (name commands)
+ (libraries rhul
+            backlight
+            core
+            cmdliner))

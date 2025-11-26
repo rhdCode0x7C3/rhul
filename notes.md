@@ -1,4 +1,4 @@
-# userhand
+# Rh-UserLand
 A suite of Linux userland utilities written in OCaml.
 
 ## Introduction

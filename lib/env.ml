@@ -3,6 +3,8 @@ open Core
 type t = Val of string | Vals of string list
 type error = Bad_type
 
+let error_to_string = function Bad_type -> "Tried to access an illegal value."
+
 let make s =
   let l = String.split s ~on:':' in
   if List.length l = 1 then Val s else Vals l

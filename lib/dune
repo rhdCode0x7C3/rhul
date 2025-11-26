@@ -1,7 +1,7 @@
 (library
   (package rhul)
  (name rhul)
- (preprocess (pps ppx_let))
+ (preprocess (pps ppx_let ppx_deriving.show))
  (libraries core
               core_unix
               core_unix.sys_unix
