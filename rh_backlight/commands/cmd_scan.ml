@@ -1,4 +1,3 @@
-open Core
 open Cmdliner
 open Backlight
 
@@ -17,5 +16,8 @@ let run () = Discover.scan () |> Discover.sexp_of_t |> Cache.write ~fn:"scan"
 let cmd =
   let doc = "Scan for devices with brightness control" in
   let info = Cmd.info "scan" ~version:Globals.version ~doc ~exits in
-  let term = Term.(const (run () |> handler)) in
-  Cmd.v info term
+  let term =
+    let open Term in
+    const handler $ (const run $ const ())
+  in
+  Cmd.make info term

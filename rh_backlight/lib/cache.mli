@@ -11,5 +11,5 @@ type error =
   val error_to_string : error -> string
 
 val cache : unit -> (Path.t, error) Result.t
-val read : unit -> (Sexp.t, error) Result.t
+val read : fn:string -> (Sexp.t, error) Result.t
 val write : fn:string -> Sexp.t -> (unit, error) Result.t
