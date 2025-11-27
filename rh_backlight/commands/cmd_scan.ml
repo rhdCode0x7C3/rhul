@@ -1,4 +1,5 @@
 open Cmdliner
+open Term
 open Backlight
 
 let exits = Cmd.Exit.defaults
@@ -17,7 +18,9 @@ let cmd =
   let doc = "Scan for devices with brightness control" in
   let info = Cmd.info "scan" ~version:Globals.version ~doc ~exits in
   let term =
-    let open Term in
-    const handler $ (const run $ const ())
+    let run = const run in
+    let handler = const handler in
+    let unit = const () in
+    handler $ (run $ unit)
   in
   Cmd.make info term
