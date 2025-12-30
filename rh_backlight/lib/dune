@@ -1,8 +1,5 @@
 (library
  (name backlight)
- (preprocess (pps ppx_let ppx_deriving.show ppx_sexp_conv))
- (libraries rhul
-            core
-            core_unix
-            core_unix.sys_unix
-            core_unix.filename_unix))
+ (preprocess
+  (pps ppx_let ppx_deriving.show ppx_sexp_conv))
+ (libraries rhul core core_unix core_unix.sys_unix core_unix.filename_unix))

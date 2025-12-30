@@ -1,13 +1,11 @@
 (executable
-  (package rh-backlight)
+ (package rh-backlight)
  (public_name backlight)
  (name main)
- (libraries backlight)
- )
+ (libraries backlight))
 
 (executable
-  (package rh-backlight)
+ (package rh-backlight)
  (public_name backlight_cli)
  (name main_cli)
- (libraries backlight commands cmdliner)
- )
+ (libraries backlight commands cmdliner))

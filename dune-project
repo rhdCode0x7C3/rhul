@@ -49,4 +49,11 @@
  (description "Linux network control utility written in OCaml.")
  (depends (ocaml (>= 5.4.0)))
  )
+
+(package
+ (name rh-wm)
+ (synopsis "Rh-wm")
+ (description "Wayland compositor written in OCaml.")
+ (depends (ocaml (>= 5.4.0)))
+ )
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html

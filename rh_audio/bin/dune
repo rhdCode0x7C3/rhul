@@ -1,6 +1,5 @@
 (executable
-  (package rh-audio)
+ (package rh-audio)
  (public_name audio)
  (name main)
- (libraries audio)
- )
+ (libraries audio))

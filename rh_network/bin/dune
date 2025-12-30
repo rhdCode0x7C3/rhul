@@ -1,6 +1,5 @@
 (executable
-  (package rh-network)
+ (package rh-network)
  (public_name network)
  (name main)
- (libraries network)
- )
+ (libraries network))
