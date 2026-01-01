@@ -15,7 +15,7 @@ let suggest () =
     | Ok l -> Discover.t_of_sexp l
     | Error _ -> Discover.scan ()
   in
-  let terms = [ "acklight"; "acklight"; "kbd"; "keyboard" ] in
+  let terms = [ "acklight"; "kbd"; "keyboard" ] in
   let backlight =
     search terms (devices |> List.map ~f:(fun e -> Device.get_name e))
   in

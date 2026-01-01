@@ -20,13 +20,16 @@
  (synopsis "Rh-UserLand")
  (description "Shared library code for rhUL utilities.")
  (depends (ocaml (>= 5.4.0))
+          (core (>= 0.17.1))
+          (core_unix (>= 0.17.1))
+          (ppx_deriving (>= 6.1.1))
   ;; Dev setup
            (utop :with-dev-setup)
            (ocamlformat :with-dev-setup)
            (ocp-indent :with-dev-setup)
            (merlin :with-dev-setup)
            (ocaml-lsp-server :with-dev-setup)
-           (alcotest (>= 1.9.1 :with-test))))
+           (alcotest :with-test)))
 
 (package
  (name rh-audio)
@@ -40,20 +43,15 @@
  (name rh-backlight)
  (synopsis "Rh-backlight")
  (description "Linux backlight control utility written in OCaml.")
- (depends (ocaml (>= 5.4.0)))
- )
+ (depends (ocaml (>= 5.4.0))
+          (cmdliner (>= 2.1.0))
+          (ppx_deriving (>= 6.1.1))
+           (alcotest :with-test)))
 
 (package
  (name rh-network)
  (synopsis "Rh-network")
  (description "Linux network control utility written in OCaml.")
- (depends (ocaml (>= 5.4.0)))
- )
-
-(package
- (name rh-wm)
- (synopsis "Rh-wm")
- (description "Wayland compositor written in OCaml.")
  (depends (ocaml (>= 5.4.0)))
  )
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html

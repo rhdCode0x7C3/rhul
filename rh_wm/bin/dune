@@ -1,5 +1,0 @@
-(executable
- (package rh-wm)
- (public_name wm)
- (name main)
- (libraries wm))
